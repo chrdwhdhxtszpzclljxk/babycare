@@ -8,6 +8,8 @@
     "email": ""
   },
   "dependencies": {
+    "cryptojs": "^2.5.3",
+    "node-rsa": "^0.3.2",
     "socket.io": "^1.4.5"
   }
 }

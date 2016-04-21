@@ -17,9 +17,62 @@
     </head>
 <body onhashchange="miniSPA.changeUrl('home');">
     <div class="page-group">
-        <div class="page page-current">
+        <div class="page page-current" id="pagemain">
             <div id="splash" class="opacity mask">
+                <div></div>
+                <div class="card topmargin10">
+                    <div class="card-content">
+                        <div class="card-content-inner">
 
+                            <div class="list-block" style="padding-top:15px;padding-bottom:15px;width:100%;">
+
+                                <div class="item-content">
+                                    <div class="item-media"><i class="icon icon-form-name"></i></div>
+                                    <div class="item-inner">
+                                        <div class="item-input">
+                                            <input id="un" type="text" placeholder="点此输入用户名/手机号">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="item-content topmargin10">
+                                    <div class="item-media"><i class="icon icon-form-password"></i></div>
+                                    <div class="item-inner">
+                                        <div class="item-input">
+                                            <input id="pwd" type="password" placeholder="点此输入密码" class="">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="item-content topmargin10">
+                                    <div class="item-media"><i class="icon icon-form-toggle"></i></div>
+                                    <div class="item-inner">
+                                        <div class="item-title label" style="min-width:100px;">自动登陆：</div>
+                                        <div class="item-input">
+                                            <label class="label-switch">
+                                                <input id="ckb" type="checkbox">
+                                                <div class="checkbox"></div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="item-content topmargin10" style="margin-top:6px;padding-bottom:6px;">
+                                    <div class="content-block" style="width:100%;">
+                                        <div class="row">
+                                            <div class="col-50"><a href="#" id="bnlogin" class="button button-fill button-danger button-big">登录</a></div>
+                                            <div class="col-50"><a href="#" id="bncancel" class="button button-fill button-success button-big">取消</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div style="clear:both"></div>
+                        </div>
+                        <div style="clear:both"></div>
+                    </div>
+                    <div style="clear:both"></div>
+                </div>
             </div>
             <div class="content">
                 <div id="demo"></div>
@@ -51,6 +104,38 @@
             </nav>
         </div>
       </div>
+    <script src="scripts/CryptoJS/core.js"></script>
+    <script src="scripts/CryptoJS/lib-typedarrays.js"></script>
+    <script src="scripts/CryptoJS/x64-core.js"></script>
+    <script src="scripts/CryptoJS/enc-utf16.js"></script>
+    <script src="scripts/CryptoJS/enc-base64.js"></script>
+    <script src="scripts/CryptoJS/md5.js"></script>
+    <script src="scripts/CryptoJS/ripemd160.js"></script>
+    <script src="scripts/CryptoJS/hmac.js"></script>
+    <script src="scripts/CryptoJS/pbkdf2.js"></script>
+    <script src="scripts/CryptoJS/evpkdf.js"></script>
+    <script src="scripts/CryptoJS/cipher-core.js"></script>
+    <script src="scripts/CryptoJS/mode-cfb.js"></script>
+    <script src="scripts/CryptoJS/mode-ctr.js"></script>
+    <script src="scripts/CryptoJS/mode-ofb.js"></script>
+    <script src="scripts/CryptoJS/mode-ecb.js"></script>
+    <script src="scripts/CryptoJS/pad-ansix923.js"></script>
+    <script src="scripts/CryptoJS/pad-iso10126.js"></script>
+    <script src="scripts/CryptoJS/pad-zeropadding.js"></script>
+    <script src="scripts/CryptoJS/pad-iso97971.js"></script>
+    <script src="scripts/CryptoJS/pad-nopadding.js"></script>
+    <script src="scripts/CryptoJS/rc4.js"></script>
+    <script src="scripts/CryptoJS/rabbit.js"></script>
+    <script src="scripts/CryptoJS/rabbit-legacy.js"></script>
+    <script src="scripts/CryptoJS/aes.js"></script>
+    <script src="scripts/CryptoJS/tripledes.js"></script>
+    <script language="JavaScript" type="text/javascript" src="scripts/CryptoJS/rsa/prng4.js"></script>
+    <script language="JavaScript" type="text/javascript" src="scripts/CryptoJS/rsa/rng.js"></script>
+    <script language="JavaScript" type="text/javascript" src="scripts/CryptoJS/rsa/jsbn.js"></script>
+    <script language="JavaScript" type="text/javascript" src="scripts/CryptoJS/rsa/jsbn2.js"></script>
+    <script language="JavaScript" type="text/javascript" src="scripts/CryptoJS/rsa/rsa.js"></script>
+    <script language="JavaScript" type="text/javascript" src="scripts/CryptoJS/rsa/rsa2.js"></script>
+
             <script type="text/javascript" src="cordova.js"></script>
             <script type="text/javascript" src="scripts/socket.io-client/socket.io.js"></script>
             <script type="text/javascript" src="scripts/platformOverrides.js"></script>

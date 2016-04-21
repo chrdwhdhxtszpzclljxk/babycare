@@ -7,6 +7,21 @@
     font-size:12px;
 }
 
+.icon.icon-form-name {
+  width: 1.45rem;
+  height: 1.45rem;
+  background-image: url("../images/i-form-name.png");
+}
+.icon.icon-form-password {
+  width: 1.45rem;
+  height: 1.45rem;
+  background-image: url("../images/i-form-password.png");
+}
+
+.topmargin10{
+    margin-top:10px;
+}
+
 .mask{height:100%; width:100%; position:fixed; _position:absolute; top:0; z-index:1000; } 
 
 .opacity{ opacity:1.0; filter: alpha(opacity=100); background-color:white;  data-transition="pop"} 

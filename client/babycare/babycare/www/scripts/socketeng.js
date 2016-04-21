@@ -4,11 +4,33 @@
 // 然后在 JavaScript 控制台中运行 "window.location.reload()"。
 (function (a) {
     "use strict";
+    a.serverurl = "http://127.0.0.1:1337";
 
-    var socket = io.connect('http://127.0.0.1:1337');
-    socket.on('news', function (data) {
-        console.log(JSON.stringify(data));
-        socket.emit('my other event', { my: 'data' });
+    $(document).on("pageInit", "#pagemain", function (e, id, page) {
+        setTimeout(function () {
+            $.showPreloader("生成交互密钥...");
+            var rsa = new RSAKey();
+            rsa.generate(parseInt(1024), "10001");
+            
+            console.log(JSON.stringify(rsa.toString()));
+            
+            a.rsan = rsa.n.toString(16); a.rsae = rsa.e.toString(16);
+            console.log(a.rsan);
+            console.log(a.rsae);
+
+            $.hidePreloader();
+        }, 10);
     });
+
+    a.postinit = function() {
+        a.socket = io.connect(a.serverurl);
+        a.socket.on('connect', function () {
+            a.socket.emit('init', { n: a.rsan, e: a.rsae });
+
+        });
+    }
+
+
+
 
 })(window.skt = {});

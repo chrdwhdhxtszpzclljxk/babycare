@@ -21,7 +21,7 @@
 
 
         $("#bnlogin").click(function () {
-            $.toast("login");
+            window.skt.postinit();
         });
     };
     function onPause() {
