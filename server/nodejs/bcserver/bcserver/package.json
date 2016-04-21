@@ -1,0 +1,13 @@
+{
+  "name": "bcserver",
+  "version": "0.0.0",
+  "description": "bcserver",
+  "main": "server.js",
+  "author": {
+    "name": "Administrator",
+    "email": ""
+  },
+  "dependencies": {
+    "socket.io": "^1.4.5"
+  }
+}
