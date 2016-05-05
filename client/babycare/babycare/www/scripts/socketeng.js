@@ -26,7 +26,9 @@
         a.socket = io.connect(a.serverurl);
         a.socket.on('connect', function () {
             a.socket.emit('init', { n: a.rsan, e: a.rsae });
-
+        });
+        a.socket.on('init', function (data) {
+            console.log(data);
         });
     }
 

@@ -1,5 +1,7 @@
 ﻿var app = require('http').createServer(handler);
 var io = require('socket.io')(app);
+var aeskey = "";
+var aesiv = "";
 
 app.listen(1337);
 
@@ -16,17 +18,14 @@ io.on('connection', function (socket) {
             var key = new NodeRSA();
             var keydata = {
                 n: new Buffer(data.n, 'hex'),
-                e: data.e,
+                e: parseInt(data.e),
             };
 
             key.importKey(keydata, 'components-public');
 
-            //var pri = key.exportKey('private');
-            //console.log(pri)
-            var pub = key.exportKey('public');
-            console.log(pub);
-           
+            var out = key.encrypt("hello","base64","utf8");
 
+            socket.emit('init', { key:out });
         });
 
 
