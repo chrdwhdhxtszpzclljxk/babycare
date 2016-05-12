@@ -1,0 +1,10 @@
+{
+  "name": "nodejs-proxy",
+  "version": "0.0.0",
+  "description": "NodejsProxy",
+  "main": "app.js",
+  "author": {
+    "name": "Administrator",
+    "email": ""
+  }
+}
