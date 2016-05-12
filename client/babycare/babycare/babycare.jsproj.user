@@ -3,4 +3,7 @@
   <PropertyGroup>
     <ReferenceCachePath>C:\Users\Administrator\AppData\Local\Temp\babycare_refcache</ReferenceCachePath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">
+    <DebuggerFlavor>RippleNexusS</DebuggerFlavor>
+  </PropertyGroup>
 </Project>

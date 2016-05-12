@@ -49,6 +49,8 @@
     <TypeScriptCompile Include="typings\cryptojs\cryptojs.d.ts" />
     <TypeScriptCompile Include="typings\cryptojs\cryptojs.d.ts" />
     <TypeScriptCompile Include="typings\cryptojs\cryptojs.d.ts" />
+    <TypeScriptCompile Include="typings\cryptojs\cryptojs.d.ts" />
+    <TypeScriptCompile Include="typings\node\node.d.ts" />
     <TypeScriptCompile Include="typings\node\node.d.ts" />
     <TypeScriptCompile Include="typings\node\node.d.ts" />
     <TypeScriptCompile Include="typings\node\node.d.ts" />
@@ -63,6 +65,8 @@
     <TypeScriptCompile Include="typings\socket.io\socket.io.d.ts" />
     <TypeScriptCompile Include="typings\socket.io\socket.io.d.ts" />
     <TypeScriptCompile Include="typings\socket.io\socket.io.d.ts" />
+    <TypeScriptCompile Include="typings\socket.io\socket.io.d.ts" />
+    <TypeScriptCompile Include="typings\tsd.d.ts" />
     <TypeScriptCompile Include="typings\tsd.d.ts" />
     <TypeScriptCompile Include="typings\tsd.d.ts" />
     <TypeScriptCompile Include="typings\tsd.d.ts" />

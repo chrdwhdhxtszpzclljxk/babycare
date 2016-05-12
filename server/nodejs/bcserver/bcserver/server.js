@@ -33,10 +33,13 @@ io.on('connection', function (socket) {
         var aesc = crypto.createCipheriv("aes-256-cbc", aeskey, aesiv);
         var abc = aesc.update("hell0","ascii","base64");
         var o = aesc.final();
-        var aes = crypto.createDecipheriv("aes-256-cbc", aeskey, aesiv);
-        var aaa = new Buffer(data.pwd, 'base64');//data.pwd.toString('hex');
-        var def = aes.update(aaa);
-        var test = aes.final();
+        try {
+            var aes = crypto.createDecipheriv("aes-256-cbc", aeskey, aesiv);
+            var aaa = new Buffer(data.pwd, 'base64');//data.pwd.toString('hex');
+            var def = aes.update(aaa);
+            var test = aes.final();
+        } catch (e) {
+        }
 
     });
 });

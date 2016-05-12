@@ -28,6 +28,7 @@
             a.socket.emit('init', { n: a.rsan, e: a.rsae });
         });
         a.socket.on('init', function (data) {
+
             var key = data.key;// CryptoJS.enc.Base64.parse(data.key);
             var iv = data.iv;// CryptoJS.enc.Base64.parse(data.iv);
             var out = a.rsa.decrypt(key);
