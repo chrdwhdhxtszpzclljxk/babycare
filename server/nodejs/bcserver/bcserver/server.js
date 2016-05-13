@@ -1,13 +1,14 @@
 ﻿var app = require('http').createServer(handler);
 var io = require('socket.io')(app);
 const crypto = require('crypto');
-var NodeRSA = require('node-rsa');
 var jsbnrsa = require('node-bignumber');
+var mysql = require('mysql');
+
 var aeskey = "";
 var aesiv = "";
 
 app.listen(1337);
-console.log(crypto.getCiphers());
+//console.log(crypto.getCiphers());
 
 function handler(req, res) {
 }
@@ -30,16 +31,34 @@ io.on('connection', function (socket) {
         });
     });
     socket.on('login', function (data) {
-        var aesc = crypto.createCipheriv("aes-256-cbc", aeskey, aesiv);
-        var abc = aesc.update("hell0","ascii","base64");
-        var o = aesc.final();
+        var pwd = "";
         try {
             var aes = crypto.createDecipheriv("aes-256-cbc", aeskey, aesiv);
-            var aaa = new Buffer(data.pwd, 'base64');//data.pwd.toString('hex');
-            var def = aes.update(aaa);
-            var test = aes.final();
+            aes.setAutoPadding(false);
+            var aaa = new Buffer(data.pwd, 'base64');
+            pwd = aes.update(data.pwd, "base64", "utf8");
+            pwd += aes.final();
         } catch (e) {
         }
+        console.log("pwd:" + pwd.toString("utf8"));
+
+        
+        var connection = mysql.createConnection({
+            host: 'www.gwgz.com',
+            user: 'gwgzapp00',
+            password: 'tnt6316311.',
+            database: 'gwgzapp'
+        });
+        var sql = 'CALL user_login("' + data.un + '","' + pwd.toString("utf8") + '");';
+        connection.query(sql, function (err, rows, fields) {
+            if (err) {
+                throw err;
+            }
+
+            var results = rows[0];
+            var row = results[0];
+            console.log("logined：", row.logined);
+        });
 
     });
 });

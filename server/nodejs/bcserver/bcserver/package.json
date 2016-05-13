@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "cryptojs": "^2.5.3",
+    "mysql": "^2.10.2",
     "node-bignumber": "^1.2.1",
     "node-rsa": "^0.3.2",
     "socket.io": "^1.4.5"

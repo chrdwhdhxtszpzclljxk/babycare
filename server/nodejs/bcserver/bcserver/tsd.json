@@ -6,13 +6,16 @@
   "bundle": "typings/tsd.d.ts",
   "installed": {
     "node/node.d.ts": {
-      "commit": "544a35a10866b32afda9c7f029c0764558563f4f"
+      "commit": "1ec3d510e0c4d7c50e708ca7cb0765c7e06fa2ed"
     },
     "socket.io/socket.io.d.ts": {
       "commit": "544a35a10866b32afda9c7f029c0764558563f4f"
     },
     "cryptojs/cryptojs.d.ts": {
       "commit": "544a35a10866b32afda9c7f029c0764558563f4f"
+    },
+    "mysql/mysql.d.ts": {
+      "commit": "1ec3d510e0c4d7c50e708ca7cb0765c7e06fa2ed"
     }
   }
 }
