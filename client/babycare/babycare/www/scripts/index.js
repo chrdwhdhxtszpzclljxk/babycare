@@ -18,8 +18,6 @@
             //$.toast("操作失败");
         }
 
-
-
         $("#bnlogin").click(function () {
             window.skt.postinit();
         });

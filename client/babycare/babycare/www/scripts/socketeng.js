@@ -5,15 +5,20 @@
 (function (a) {
     "use strict";
     a.serverurl = "http://127.0.0.1:1337";
+    a.logined = 99;
 
     $(document).on("pageInit", "#pagemain", function (e, id, page) {
         setTimeout(function () {
+            if (a.logined == 0) {
+                $('#pagemain').hide();
+            } else {
+                $('#loading').hide();
+                $('#login').show();
+            }
             $.showPreloader("生成交互密钥...");
             a.rsa = new RSAKey();
             a.rsa.generate(parseInt(1024), "10001");
-            
             console.log(JSON.stringify(a.rsa.toString()));
-            
             a.rsan = a.rsa.n.toString(16); a.rsae = a.rsa.e.toString(16);
             console.log(a.rsan);
             console.log(a.rsae);
@@ -46,6 +51,16 @@
             console.log("iv:" + a.aesiv);
             console.log("pwd:" + pwd2);
             a.socket.emit('login', logininfo);
+        });
+
+        a.socket.on('login', function (data) {
+            if (data.r == 0) {
+                $('#splash').hide();
+                a.logined = 0;
+            } else {
+                $.toast("用户名或密码错误！");
+                a.logined = data.r;
+            }
         });
     }
 

@@ -6,6 +6,12 @@ var mysql = require('mysql');
 
 var aeskey = "";
 var aesiv = "";
+var mysqlhost = {
+    host: 'www.gwgz.com',
+    user: 'gwgzapp00',
+    password: 'tnt6316311.',
+    database: 'gwgzapp'
+};
 
 app.listen(1337);
 //console.log(crypto.getCiphers());
@@ -43,21 +49,21 @@ io.on('connection', function (socket) {
         console.log("pwd:" + pwd.toString("utf8"));
 
         
-        var connection = mysql.createConnection({
-            host: 'www.gwgz.com',
-            user: 'gwgzapp00',
-            password: 'tnt6316311.',
-            database: 'gwgzapp'
-        });
+        var connection = mysql.createConnection(mysqlhost);
         var sql = 'CALL user_login("' + data.un + '","' + pwd.toString("utf8") + '");';
         connection.query(sql, function (err, rows, fields) {
+            var out = {r:99,m:""};
             if (err) {
-                throw err;
+                out.m = err;
+            } else {
+
+                var results = rows[0];
+                var row = results[0];
+                console.log("logined：", row.logined);
+                out.r = row.logined;
             }
 
-            var results = rows[0];
-            var row = results[0];
-            console.log("logined：", row.logined);
+            socket.emit('login', out);
         });
 
     });

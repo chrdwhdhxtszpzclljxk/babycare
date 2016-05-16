@@ -4,6 +4,7 @@
     <ReferenceCachePath>C:\Users\Administrator\AppData\Local\Temp\babycare_refcache</ReferenceCachePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">
-    <DebuggerFlavor>RippleNexusS</DebuggerFlavor>
+    <DebuggerFlavor>AndroidEmulator</DebuggerFlavor>
+    <AndroidEmulatorID>363F7AED-462C-46BD-9FEC-F1DD3B79916C;VS Emulator 5" KitKat (4.4) XXHDPI Phone</AndroidEmulatorID>
   </PropertyGroup>
 </Project>
