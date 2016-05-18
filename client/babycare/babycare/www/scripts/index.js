@@ -21,6 +21,39 @@
         $("#bnlogin").click(function () {
             window.skt.postinit();
         });
+
+        $("#sendpwd").click(function () {
+            var uniq = $("#uniq").val();
+            if (uniq == undefined || uniq == "") {
+                $.toast("手机/EMAIL不能为空！");
+                return;
+            }
+            var re = /^[0-9]+.?[0-9]*$/;
+            var reginfo = {};
+            reginfo.uniq = uniq;
+            if (uniq.indexOf("@") != -1) {
+                reginfo.type = "email";
+                //$.toast("email");
+            } else if (re.test(uniq)) {
+                //$.toast("mobile");
+                reginfo.type = "mobile";
+            } else {
+                $.toast("输入不合法，请输入手机号或者EMAIL");
+                return;
+            }
+
+            window.skt.emit('reg', reginfo);
+
+
+            $("#getuniq").hide();
+            $("#getuniqok").show();
+        });
+
+        $(".close-popup").click(function () {
+            $("#uniq").val("");
+            $("#getuniq").show();
+            $("#getuniqok").hide();
+        });
     };
     function onPause() {
         // TODO: 此应用程序已挂起。在此处保存应用程序状态。

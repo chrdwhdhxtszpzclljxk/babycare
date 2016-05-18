@@ -6,7 +6,7 @@
         必要时在以下 META 标记中自定义内容安全策略。将 "unsafe-inline" 添加到 default-src 以启动内联 JavaScript。
       有关详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkID=617521
     -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval';connect-src 'self' https://maps.googleapis.com ws://localhost:1337 ws://127.0.0.1:1337; font-src http://at.alicdn.com ; style-src 'self' 'unsafe-inline'; media-src *; script-src * 'unsafe-inline' ">
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval';connect-src 'self' https://maps.googleapis.com ws://localhost:1337 ws://127.0.0.1:1337 ws://192.168.18.104:1337; font-src http://at.alicdn.com ; style-src 'self' 'unsafe-inline'; media-src *; script-src * 'unsafe-inline' ">
         
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
@@ -67,6 +67,15 @@
                                     </div>
                                 </div>
 
+                                <div class="item-content topmargin10" style="margin-top:6px;padding-bottom:6px;">
+                                    <div class="content-block" style="width:100%;">
+                                        <div class="row">
+                                            <div class="col-50" style="text-align:right;"><a href="#" class="button-link button-nav pull-right open-popup"  data-popup=".popup-about">注册新用户</a></div>
+                                            <div class="col-50"><a href="#" >忘记密码？</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                             <div style="clear:both"></div>
                         </div>
@@ -105,6 +114,32 @@
             </nav>
         </div>
       </div>
+
+    <div class="popup popup-about">
+        <header class="bar bar-nav">
+            <a class="button button-link button-nav pull-left close-popup">
+                关闭
+            </a>
+            <h1 class="title">注册新用户</h1>
+        </header>
+        <div class="content">
+            <div class="content-inner">
+                <div class="content-block">
+                    <div id="getuniq">
+                        <p><span><input id="uniq" type="text" placeholder="点此输入您的手机/Email" style="width:100%;"></span></p>
+                        <p></p>
+                        <p><a class="button" id="sendpwd">发送密码</a></p>
+                    </div>
+                    <div id="getuniqok" style="display:none;">
+                        <p>密码发送成功！密码5分钟内登录有效，登录后请尽快更改密码。</p>
+                        <p></p>
+                        <p><a class="button close-popup">返回登录</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="scripts/CryptoJS/core.js"></script>
     <script src="scripts/CryptoJS/lib-typedarrays.js"></script>
     <script src="scripts/CryptoJS/x64-core.js"></script>

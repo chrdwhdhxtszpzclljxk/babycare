@@ -4,27 +4,31 @@
 // 然后在 JavaScript 控制台中运行 "window.location.reload()"。
 (function (a) {
     "use strict";
-    a.serverurl = "http://127.0.0.1:1337";
+    a.serverurl = "ws://192.168.18.104:1337";
     a.logined = 99;
 
     $(document).on("pageInit", "#pagemain", function (e, id, page) {
+        console.log("pateInit");
         setTimeout(function () {
+            console.log(a.rsa);
+            $.showPreloader("生成交互密钥...");
+            a.rsa = new RSAKey();
+            a.rsa.generate(parseInt(1024), "10001");
+            //console.log(JSON.stringify(a.rsa.toString()));
+            a.rsan = a.rsa.n.toString(16); a.rsae = a.rsa.e.toString(16);
+            console.log(a.rsan);
+            console.log(a.rsae);
+
+            $.hidePreloader();
+
             if (a.logined == 0) {
                 $('#pagemain').hide();
             } else {
                 $('#loading').hide();
                 $('#login').show();
             }
-            $.showPreloader("生成交互密钥...");
-            a.rsa = new RSAKey();
-            a.rsa.generate(parseInt(1024), "10001");
-            console.log(JSON.stringify(a.rsa.toString()));
-            a.rsan = a.rsa.n.toString(16); a.rsae = a.rsa.e.toString(16);
-            console.log(a.rsan);
-            console.log(a.rsae);
 
-            $.hidePreloader();
-        }, 10);
+        }, 1000);
     });
 
     a.postinit = function () {
