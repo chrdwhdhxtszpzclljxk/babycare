@@ -42,11 +42,17 @@
                 return;
             }
 
-            window.skt.emit('reg', reginfo);
+            $.get(window.skt.httpurl, reginfo, function (d, s, x) {
+                if (d.r == 0) {
+                    $("#getuniq").hide();
+                    $("#getuniqok").show();
+                }else if (d.r == 1062) {
+                    $.toast(d.m);
+                }
+            });
 
 
-            $("#getuniq").hide();
-            $("#getuniqok").show();
+
         });
 
         $(".close-popup").click(function () {

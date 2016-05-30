@@ -4,6 +4,7 @@
 // 然后在 JavaScript 控制台中运行 "window.location.reload()"。
 (function (a) {
     "use strict";
+    a.httpurl = "http://192.168.18.104:1337";
     a.serverurl = "ws://192.168.18.104:1337";
     a.logined = 99;
 

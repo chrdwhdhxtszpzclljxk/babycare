@@ -1,8 +1,12 @@
 ﻿var app = require('http').createServer(handler);
 var io = require('socket.io')(app);
+var url = require("url");
+
 const crypto = require('crypto');
 var jsbnrsa = require('node-bignumber');
 var mysql = require('mysql');
+var db = null;
+var sql = null;
 
 var aeskey = "";
 var aesiv = "";
@@ -13,10 +17,35 @@ var mysqlhost = {
     database: 'gwgzapp'
 };
 
+connect();
+
 app.listen(1337);
-//console.log(crypto.getCiphers());
 
 function handler(req, res) {
+    var params = url.parse(req.url, true).query;
+    console.log(params);
+
+    var content = generateMixed(6);
+    var md5 = crypto.createHash('md5');
+    md5.update(content);
+    var d = md5.digest('hex');
+    
+    sql = 'CALL user_register("' + params.uniq + '","' + d.toString("utf8") + '");';
+    db.query(sql, function (err, rows, fields) {
+        var out = { r: 99, m: "" };
+        if (err) {
+            out.m = err;
+            if (err.errno == 1062) {
+                out.r = 1062;
+                out.m = "手机号或EMAIL已经被注册过";
+            }
+        } else {
+            out.r = 0;
+        }
+        console.log("password:", content);
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify(out));
+    });
 }
 
 io.on('connection', function (socket) {
@@ -47,11 +76,9 @@ io.on('connection', function (socket) {
         } catch (e) {
         }
         console.log("pwd:" + pwd.toString("utf8"));
-
         
-        var connection = mysql.createConnection(mysqlhost);
-        var sql = 'CALL user_login("' + data.un + '","' + pwd.toString("utf8") + '");';
-        connection.query(sql, function (err, rows, fields) {
+        sql = 'CALL user_login("' + data.un + '","' + pwd.toString("utf8") + '");';
+        db.query(sql, function (err, rows, fields) {
             var out = {r:99,m:""};
             if (err) {
                 out.m = err;
@@ -68,3 +95,34 @@ io.on('connection', function (socket) {
 
     });
 });
+
+function mysqlError(err) {
+    if (err) {
+        // 如果是连接断开，自动重新连接
+        if (err.code === 'PROTOCOL_CONNECTION_LOST') {
+            connect();
+        } else {
+            console.error(err.stack || err);
+        }
+    }
+}
+
+// 连接数据库
+function connect() {
+    db = mysql.createConnection(mysqlhost);
+    db.connect(mysqlError);
+    db.on('error', mysqlError);
+    console.log("mysql：ok.");
+}
+
+
+var chars = ['0', '1', '2', '3', '5', '6', '7', '8', '9','9'];
+
+function generateMixed(n) {
+    var res = "";
+    for (var i = 0; i < n; i++) {
+        var id = Math.ceil(Math.random() * 9);
+        res += chars[id];
+    }
+    return res;
+}
