@@ -48,6 +48,8 @@
                     $("#getuniqok").show();
                 }else if (d.r == 1062) {
                     $.toast(d.m);
+                } else {
+                    $.toast(d.m);
                 }
             });
 

@@ -37,10 +37,16 @@ function handler(req, res) {
             out.m = err;
             if (err.errno == 1062) {
                 out.r = 1062;
-                out.m = "手机号或EMAIL已经被注册过";
+                out.m = "数据服务失败" + err.errno;
             }
         } else {
             out.r = 0;
+            if (rows[0][0].userid == null) {
+                out.r = 1;
+                out.m = "手机号码/Email地址已经被注册";
+            }else {
+            }
+            
         }
         console.log("password:", content);
         res.writeHead(200, { 'Content-Type': 'application/json' });
